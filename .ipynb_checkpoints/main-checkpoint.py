@@ -27,7 +27,7 @@ def read_page(n, reader):
     :return:
     """
     pageObj = reader.getPage(n)
-    if check_annots(): return
+    if not '/Annots' in pageObj.keys(): return
     paths = []
     for obj in pageObj['/Annots']:
         path = obj.getObject()['/A'].get('/F')
@@ -35,8 +35,6 @@ def read_page(n, reader):
             paths.append(path)
     return paths
 
-def check_annots():
-    not '/Annots' in pageObj.keys()
 
 def parse_args():
     parser = argparse.ArgumentParser()
